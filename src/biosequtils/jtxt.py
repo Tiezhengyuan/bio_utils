@@ -6,9 +6,8 @@ from typing import Iterable
 import json
 import os
 from .key_value import KeyValue
-from .commons import Commons
 
-class Jtxt(Commons):
+class Jtxt:
     def __init__(self, file:str):
         super(Jtxt, self).__init__()
         self.file = file

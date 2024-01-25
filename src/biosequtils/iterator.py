@@ -6,9 +6,9 @@ import gzip
 import os
 import re
 import pandas as pd 
+import itertools
 
-
-class Utils:
+class Iterator:
 
     @staticmethod
     def sort_array(arr):
@@ -45,6 +45,22 @@ class Utils:
             # print('##', series)
             return list(val) if type(val) == pd.Series else [val,] 
         return []
+
+    @staticmethod
+    def shape_length(input:list, fill_value):
+        '''
+        [[1,2],[1,2,4]] -> [[1,2,0],[1,2,4]]
+        '''
+        max_len = 0
+        for i in input:
+            this_len = len(list(i))
+            if this_len > max_len:
+                max_len = this_len
+        #append fill_value to the end of the list
+        for i in range(len(input)):
+            if len(input[i]) < max_len:
+                val = [fill_value,]*(max_len - len(input[i]))
+                input[i] = list(itertools.chain(input[i], val))
 
     @staticmethod
     def parse_ncbi_acc(infile)->dict:

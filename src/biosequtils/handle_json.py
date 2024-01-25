@@ -6,10 +6,9 @@ import json
 import os
 import re
 import pandas as pd
-from .commons import Commons
 from .key_value import KeyValue
 
-class HandleJson(Commons):
+class HandleJson:
     def __init__(self, infile:str=None):
         super(HandleJson, self).__init__()
         self.infile = infile

@@ -47,6 +47,16 @@ class Dir:
             os.mkdir(self.indir, 0o777)
         return self.indir
 
+    def clear_dir(self):
+        '''
+        delete all files
+        '''
+        all_files = self.recrusive_files()
+        for file in all_files:
+            try:
+                os.remove(file)
+            except:
+                pass
 
     def recrusive_files(self): 
         '''
