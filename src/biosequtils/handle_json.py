@@ -7,7 +7,7 @@ import os
 import re
 import pandas as pd
 from .commons import Commons
-from .utils import Utils
+from .key_value import KeyValue
 
 class HandleJson(Commons):
     def __init__(self, infile:str=None):
@@ -44,7 +44,7 @@ class HandleJson(Commons):
         try:
             for k,v in self.read_json():
                 if k == keys[0]:
-                    return Utils.get_deep_value({k:v}, keys)
+                    return KeyValue.get_deep_value({k:v}, keys)
         except Exception as e:
             pass
 

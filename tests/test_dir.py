@@ -16,7 +16,7 @@ class TestDir(TestCase):
     )
     @unpack
     def test_init_dir(self, path, expect):
-        indir = os.path.join(env['DIR_DOWNLOAD'], path)
+        indir = os.path.join(DIR_TMP, path)
         res = Dir(indir).init_dir()
         assert res == expect
 

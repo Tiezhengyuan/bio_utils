@@ -5,8 +5,8 @@ jtxt format could hanlde huge data up to ~GB due RAM limits
 from typing import Iterable
 import json
 import os
-from utils.utils import Utils
-from utils.commons import Commons
+from .key_value import KeyValue
+from .commons import Commons
 
 class Jtxt(Commons):
     def __init__(self, file:str):
@@ -60,7 +60,6 @@ class Jtxt(Commons):
         with open(self.file, 'a+') as f:
             line = json.dumps(input)
             f.write(line+'\n')
-            # print(f"Append data into {self.file}")
         return True
 
    
@@ -80,7 +79,7 @@ class Jtxt(Commons):
                 for origin_dict in handle:
                     index = origin_dict.get(index_key)
                     if index and input.get(index):
-                        origin_dict = Utils.merge_dict(origin_dict, input[index])
+                        origin_dict = KeyValue.merge_dict(origin_dict, input[index])
                         del input[index]
                     f.write(json.dumps(origin_dict)+'\n')
                 #append new value
@@ -101,7 +100,7 @@ class Jtxt(Commons):
         res = []
         handle = self.read_jtxt()
         for record in handle:
-            val = Utils.get_deep_value(record, keys)
+            val = KeyValue.get_deep_value(record, keys)
             if val not in (res, None, [], {}):
                 res.append(val)
         return res

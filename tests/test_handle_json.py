@@ -5,7 +5,7 @@ from .helper import *
 from src.biosequtils import HandleJson
 
 
-infile = os.path.join(DIR_DATA, 'example.json')
+infile = os.path.join(DIR_TMP, 'example.json')
 
 @ddt
 class TestHandleJson(TestCase):
@@ -44,7 +44,6 @@ class TestHandleJson(TestCase):
             res = json.load(f)
             assert res == expect
 
-
     @data(
         [['a'], [1]],
         [['b', 'a'], [2]],
@@ -64,5 +63,4 @@ class TestHandleJson(TestCase):
             }
             HandleJson(infile).save_json(data)
         res = HandleJson(infile).search_value(keys)
-        print(res)
         assert res == expect
