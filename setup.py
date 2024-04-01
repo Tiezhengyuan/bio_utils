@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import codecs
 import os
 
@@ -9,14 +9,15 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 setup(
     name="biosequtils",
-    version='1.0.2',
+    version='1.0.3',
     author="Tiezheng Yuan",
     author_email="tiezhengyuan@hotmail.com",
     description="Provide methods on hand for bioinformatics coding work",
     url = "https://github.com/Tiezhengyuan/bio_utils",
     long_description_content_type="text/markdown",
     long_description=long_description,
-    packages=find_packages(),
+    packages=['biosequtils'],
+    package_dir={'': 'src'},
     install_requires=['Bio', 'numpy', 'pandas'],
     keywords=['pypi', 'cicd', 'python'],
     classifiers=[
